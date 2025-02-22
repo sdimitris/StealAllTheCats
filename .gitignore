@@ -1,0 +1,9 @@
+﻿.idea
+StealAllTheCats.WebApi/obj
+StealAllTheCats.WebApi/bin
+StealAllTheCats.Domain/obj
+StealAllTheCats.Domain/bin
+StealAllTheCats.Infrastructure/obj
+StealAllTheCats.Infrastructure/bin
+StealAllTheCats.Application/obj
+StealAllTheCats.Application/bin
