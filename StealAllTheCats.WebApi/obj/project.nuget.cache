@@ -1,0 +1,39 @@
+{
+  "version": 2,
+  "dgSpecHash": "m6OzSWd3rfjUKjebb+sEXtbZefHYOOp//LMTmY+LJjzRxE/nsJ2AsL3DRblN/7/Rc7noJj/blt65h8Ura2/33g==",
+  "success": false,
+  "projectFilePath": "C:\\Users\\d.soldatos\\RiderProjects\\StealAllTheCats\\StealAllTheCats.WebApi\\StealAllTheCats.WebApi.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\d.soldatos\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "C:\\Users\\d.soldatos\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\d.soldatos\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
+    "C:\\Users\\d.soldatos\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.4.0\\swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
+    "C:\\Users\\d.soldatos\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.4.0\\swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",
+    "C:\\Users\\d.soldatos\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.4.0\\swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1801",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Failed to retrieve information about 'Microsoft.AspNetCore.OpenApi' from remote source 'https://api.nuget.org/v3/index.json/FindPackagesById()?id='Microsoft.AspNetCore.OpenApi'&semVerLevel=2.0.0'.",
+      "libraryId": "Microsoft.AspNetCore.OpenApi"
+    },
+    {
+      "code": "NU1801",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Failed to retrieve information about 'Microsoft.AspNetCore.OpenApi' from remote source 'https://api.nuget.org/v3/index.json/FindPackagesById()?id='Microsoft.AspNetCore.OpenApi'&semVerLevel=2.0.0'.",
+      "libraryId": "Microsoft.AspNetCore.OpenApi"
+    },
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Unable to find package Microsoft.AspNetCore.OpenApi. No packages exist with this id in source(s): C:\\Program Files\\dotnet\\library-packs, customer limits, Microsoft Visual Studio Offline Packages, Package source",
+      "libraryId": "Microsoft.AspNetCore.OpenApi",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    }
+  ]
+}
