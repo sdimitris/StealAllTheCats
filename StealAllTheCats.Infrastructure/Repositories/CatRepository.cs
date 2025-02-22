@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using StealAllTheCats.Domain.Common;
+using StealAllTheCats.Domain.Common.Enums;
 using StealAllTheCats.Domain.Entities;
 using StealAllTheCats.Domain.Repositories;
 using StealAllTheCats.Infrastructure.Database;
@@ -31,11 +33,28 @@ public class CatRepository : ICatRepository
 
     public async Task<bool> CatExistsAsync(string catId)
     {
-        return await _context.Cats.AnyAsync(c => c.CatId == catId);
+        try
+        {
+            return await _context.Cats.AnyAsync(c => c.CatId == catId);
+
+        }
+        catch (Exception e)
+        {
+            return Result.Failure(Error.New("", ex));
+        }
     }
 
-    public async Task SaveChangesAsync()
+    public async Task<Result> SaveChangesAsync()
     {
-        await _context.SaveChangesAsync();
+        try
+        {
+            await _context.SaveChangesAsync();
+        }
+        catch (Exception ex)
+        {
+            return Result.Failure(Error.New("An error occurred while saving changes to the database. Please try again.", ex, KnownApplicationErrorEnum.SqlGenericError));
+        }
+
+        return Result.Ok();
     }
 }

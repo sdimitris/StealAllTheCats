@@ -1,3 +1,4 @@
+using StealAllTheCats.Domain.Common;
 using StealAllTheCats.Domain.Entities;
 
 namespace StealAllTheCats.Domain.Repositories;
@@ -8,5 +9,5 @@ public interface ICatRepository
     Task<CatEntity> GetCatByIdAsync(int id);
     Task AddCatAsync(CatEntity cat);
     Task<bool> CatExistsAsync(string catId);
-    Task SaveChangesAsync();
+    Task<Result> SaveChangesAsync();
 }
