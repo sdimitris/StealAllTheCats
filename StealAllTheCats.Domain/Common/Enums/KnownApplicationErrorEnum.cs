@@ -2,6 +2,8 @@
 
 public enum KnownApplicationErrorEnum
 {
-    GenericError = 1,
-    SqlGenericError = 2,
+    None = 1,
+    GenericError,
+    SqlGenericError,
+    CatsApiError,
 }

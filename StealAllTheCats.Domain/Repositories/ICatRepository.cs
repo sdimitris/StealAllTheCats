@@ -1,13 +1,13 @@
-using StealAllTheCats.Domain.Common;
+using StealAllTheCats.Domain.Common.Result;
 using StealAllTheCats.Domain.Entities;
 
 namespace StealAllTheCats.Domain.Repositories;
 
 public interface ICatRepository
 {
-    Task<IEnumerable<CatEntity>> GetCatsAsync(int page, int pageSize);
-    Task<CatEntity> GetCatByIdAsync(int id);
-    Task AddCatAsync(CatEntity cat);
-    Task<bool> CatExistsAsync(string catId);
+    Task<Result<IEnumerable<CatEntity>>> GetCatsAsync(int page, int pageSize);
+    Task<Result<CatEntity?>> GetCatByIdAsync(int id);
+    Task<Result<CatEntity?>> GetCatByCatIdAsync(string catId);
+    Task<Result> AddCatAsync(CatEntity cat);
     Task<Result> SaveChangesAsync();
 }

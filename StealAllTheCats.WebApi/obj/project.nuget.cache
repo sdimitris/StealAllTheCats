@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "1j+6BSzzF5yuzDhhbqcaZkfWMHl+6bsyr5SGCLDPovvYdEvq0/p2aF2CTENpQdq+zFHumF9z9yO7SjlNNVb2Ug==",
+  "dgSpecHash": "yNjFRybzdJet0kpGLHn1CkqIudD2LE9CYzixJXqt7Xc4YJR4zs0DspvvOWpEZ4RWwTaEaCUnFfbYAki49p6OQg==",
   "success": true,
   "projectFilePath": "C:\\Users\\d.soldatos\\RiderProjects\\StealAllTheCats\\StealAllTheCats.WebApi\\StealAllTheCats.WebApi.csproj",
   "expectedPackageFiles": [
@@ -50,8 +50,8 @@
     "C:\\Users\\d.soldatos\\.nuget\\packages\\microsoft.extensions.http\\9.0.2\\microsoft.extensions.http.9.0.2.nupkg.sha512",
     "C:\\Users\\d.soldatos\\.nuget\\packages\\microsoft.extensions.logging\\9.0.2\\microsoft.extensions.logging.9.0.2.nupkg.sha512",
     "C:\\Users\\d.soldatos\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\9.0.2\\microsoft.extensions.logging.abstractions.9.0.2.nupkg.sha512",
-    "C:\\Users\\d.soldatos\\.nuget\\packages\\microsoft.extensions.logging.configuration\\8.0.0\\microsoft.extensions.logging.configuration.8.0.0.nupkg.sha512",
-    "C:\\Users\\d.soldatos\\.nuget\\packages\\microsoft.extensions.logging.console\\8.0.0\\microsoft.extensions.logging.console.8.0.0.nupkg.sha512",
+    "C:\\Users\\d.soldatos\\.nuget\\packages\\microsoft.extensions.logging.configuration\\9.0.2\\microsoft.extensions.logging.configuration.9.0.2.nupkg.sha512",
+    "C:\\Users\\d.soldatos\\.nuget\\packages\\microsoft.extensions.logging.console\\9.0.2\\microsoft.extensions.logging.console.9.0.2.nupkg.sha512",
     "C:\\Users\\d.soldatos\\.nuget\\packages\\microsoft.extensions.logging.debug\\8.0.0\\microsoft.extensions.logging.debug.8.0.0.nupkg.sha512",
     "C:\\Users\\d.soldatos\\.nuget\\packages\\microsoft.extensions.logging.eventlog\\8.0.0\\microsoft.extensions.logging.eventlog.8.0.0.nupkg.sha512",
     "C:\\Users\\d.soldatos\\.nuget\\packages\\microsoft.extensions.logging.eventsource\\8.0.0\\microsoft.extensions.logging.eventsource.8.0.0.nupkg.sha512",

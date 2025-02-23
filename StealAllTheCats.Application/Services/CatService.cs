@@ -1,5 +1,5 @@
-using Newtonsoft.Json;
 using StealAllTheCats.Application.Interfaces;
+using StealAllTheCats.Domain.Common.Result;
 using StealAllTheCats.Domain.Entities;
 using StealAllTheCats.Domain.Repositories;
 namespace StealAllTheCats.Application.Services;
@@ -7,37 +7,51 @@ namespace StealAllTheCats.Application.Services;
 public class CatService : ICatService
 {
     private readonly ICatRepository _catRepository;
-    private readonly IHttpClientFactory  _httpClientFactory;
 
-    public CatService(ICatRepository catRepository, IHttpClientFactory httpClientFactory)
+    public CatService(ICatRepository catRepository)
     {
-        _catRepository = catRepository;
-        _httpClientFactory = httpClientFactory;
+        ArgumentNullException.ThrowIfNull(_catRepository = catRepository);
     }
 
-    public async Task FetchAndStoreCatsAsync()
+    public async Task<Result<IEnumerable<CatEntity>>> GetCatsAsync(int page, int pageSize)
     {
-        using var httpClient = _httpClientFactory.CreateClient();
-        var response = await httpClient.GetStringAsync("https://api.thecatapi.com/v1/images/search?limit=25&has_breeds=1");
-        var cats = JsonConvert.DeserializeObject<List<CatApiResponse>>(response);
         
-        foreach (var cat in cats)
+        var catsResult =  await _catRepository.GetCatsAsync(page, pageSize);
+        if (catsResult.IsFailure)
         {
-            if (await _catRepository.CatExistsAsync(cat.Id)) continue;
-
-            var newCat = new CatEntity
-            {
-                CatId = cat.Id,
-                Width = cat.Width,
-                Height = cat.Height,
-                ImageUrl = cat.Url
-            };
-            await _catRepository.AddCatAsync(newCat);
+            return Result<IEnumerable<CatEntity>>.FromFailure(catsResult);
         }
-        await _catRepository.SaveChangesAsync();
+        
+        return Result<IEnumerable<CatEntity>>.Ok(catsResult.Value);
     }
+    
+    public async Task<Result<CatEntity?>> GetCatByCatIdAsync(string catId)
+    {
+        var catResult = await _catRepository.GetCatByCatIdAsync(catId);
+        if (catResult.IsFailure)
+        {
+            return Result<CatEntity?>.FromFailure(catResult);
+        }
 
-    public Task<IEnumerable<CatEntity>> GetCatsAsync(int page, int pageSize) => _catRepository.GetCatsAsync(page, pageSize);
+        return Result<CatEntity?>.Ok(catResult.Value);;
+    }
+    
+    public async Task<Result> AddCatAsync(CatEntity catEntity)
+    {
+        var addCatResult = await _catRepository.AddCatAsync(catEntity);
+        
+        if (addCatResult.IsFailure)
+        {
+            return Result.FromFailure(addCatResult);
+        }
 
-    public Task<CatEntity> GetCatByIdAsync(int id) => _catRepository.GetCatByIdAsync(id);
+        var saveResult = await _catRepository.SaveChangesAsync();
+        
+        if (saveResult.IsFailure)
+        {
+            return Result.FromFailure(addCatResult);
+        }
+        
+        return Result.Ok();
+    }
 }

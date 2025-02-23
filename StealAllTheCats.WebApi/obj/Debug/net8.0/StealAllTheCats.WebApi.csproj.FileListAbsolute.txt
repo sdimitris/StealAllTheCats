@@ -185,3 +185,6 @@ C:\Users\d.soldatos\RiderProjects\StealAllTheCats\StealAllTheCats.WebApi\bin\Deb
 C:\Users\d.soldatos\RiderProjects\StealAllTheCats\StealAllTheCats.WebApi\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 C:\Users\d.soldatos\RiderProjects\StealAllTheCats\StealAllTheCats.WebApi\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 C:\Users\d.soldatos\RiderProjects\StealAllTheCats\StealAllTheCats.WebApi\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:\Users\d.soldatos\RiderProjects\StealAllTheCats\StealAllTheCats.WebApi\bin\Debug\net8.0\Microsoft.Extensions.Logging.Configuration.dll
+C:\Users\d.soldatos\RiderProjects\StealAllTheCats\StealAllTheCats.WebApi\bin\Debug\net8.0\Microsoft.Extensions.Logging.Console.dll
+C:\Users\d.soldatos\RiderProjects\StealAllTheCats\StealAllTheCats.WebApi\obj\Debug\net8.0\StealAllTheCats.WebApi.sourcelink.json

@@ -13,3 +13,4 @@ C:\Users\d.soldatos\RiderProjects\StealAllTheCats\StealAllTheCats.Application\ob
 C:\Users\d.soldatos\RiderProjects\StealAllTheCats\StealAllTheCats.Application\obj\Debug\net8.0\refint\StealAllTheCats.Application.dll
 C:\Users\d.soldatos\RiderProjects\StealAllTheCats\StealAllTheCats.Application\obj\Debug\net8.0\StealAllTheCats.Application.pdb
 C:\Users\d.soldatos\RiderProjects\StealAllTheCats\StealAllTheCats.Application\obj\Debug\net8.0\ref\StealAllTheCats.Application.dll
+C:\Users\d.soldatos\RiderProjects\StealAllTheCats\StealAllTheCats.Application\obj\Debug\net8.0\StealAllTheCats.Application.sourcelink.json
