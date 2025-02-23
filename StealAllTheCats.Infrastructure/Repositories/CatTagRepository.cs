@@ -50,7 +50,7 @@ public class CatTagRepository : ICatTagRepository
         }
         catch (Exception ex)
         {
-            return Result.Failure(Error.New("An error occurred while saving changes to the database. Please try again.", ex, KnownApplicationErrorEnum.SqlGenericError));
+            return Result.Failure(Error.New("An error occurred while saving tag changes to the database. Please try again.", ex, KnownApplicationErrorEnum.SqlGenericError));
         }
 
         return Result.Ok();

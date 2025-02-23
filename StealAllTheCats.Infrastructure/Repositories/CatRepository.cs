@@ -13,7 +13,7 @@ public class CatRepository : ICatRepository
     
     public CatRepository(AppDbContext context)
     {
-        _context = context;
+           ArgumentNullException.ThrowIfNull(_context = context);
     }
 
     public async Task<Result<IEnumerable<CatEntity>>> GetCatsAsync(int page, int pageSize)

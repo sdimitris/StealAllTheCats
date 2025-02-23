@@ -1,4 +1,5 @@
-﻿using StealAllTheCats.Application.Interfaces;
+﻿using Microsoft.Extensions.Logging;
+using StealAllTheCats.Application.Interfaces;
 using StealAllTheCats.Domain.Common.Result;
 using StealAllTheCats.Domain.Entities;
 
@@ -9,12 +10,15 @@ public class CatManager : ICatManager
     private readonly ICatService _catService;
     private readonly IBreedService _breedService;
     private readonly ICatsApiHttpService _catsApiHttpService;
+    private readonly ILogger<CatManager> _logger;
 
-    public CatManager(ICatService catService, IBreedService breedService, ICatsApiHttpService catsApiHttpService)
+
+    public CatManager(ICatService catService, IBreedService breedService, ICatsApiHttpService catsApiHttpService, ILogger<CatManager> logger)
     {
         ArgumentNullException.ThrowIfNull(_catService = catService);
         ArgumentNullException.ThrowIfNull(_breedService = breedService);
         ArgumentNullException.ThrowIfNull(_catsApiHttpService = catsApiHttpService);
+        ArgumentNullException.ThrowIfNull(_logger = logger);
     }
 
     public async Task<Result> FetchCatsAsync()
@@ -38,6 +42,7 @@ public class CatManager : ICatManager
             // if cat exists in db, skip
             if (catFromDb.Value is not null)
             {
+                _logger.LogInformation("Skipping cat: {CatId} because already exists", cat.Id);
                 continue;
             }
 

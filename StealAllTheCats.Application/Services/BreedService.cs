@@ -1,4 +1,5 @@
-﻿using StealAllTheCats.Application.Interfaces;
+﻿using Microsoft.Extensions.Logging;
+using StealAllTheCats.Application.Interfaces;
 using StealAllTheCats.Domain.Common.Result;
 using StealAllTheCats.Domain.Entities;
 using StealAllTheCats.Domain.Repositories;
@@ -8,16 +9,18 @@ namespace StealAllTheCats.Application.Services;
 public class BreedService : IBreedService
 {
     private readonly ICatTagRepository _catTagRepository;
-    
-    public BreedService(ICatTagRepository catTagRepository)
+    private readonly ILogger<BreedService> _logger;
+    public BreedService(ICatTagRepository catTagRepository, ILogger<BreedService> logger)
     {
         ArgumentNullException.ThrowIfNull(_catTagRepository = catTagRepository);
+        ArgumentNullException.ThrowIfNull(_logger = logger);
+
     }
 
     public async Task<Result<IEnumerable<CatTag>>> ConstructBreeds(string temperament)
     {
             List<CatTag> catTags = new();
-            foreach (var breedString in temperament.Split(","))
+            foreach (var breedString in temperament.Replace(" ", "").Split(","))
             {
                 var tagResult = await GetTagByNameAsync(breedString);
                 if (tagResult.IsFailure) 
@@ -39,6 +42,7 @@ public class BreedService : IBreedService
                 }
                 else
                 {
+                    _logger.LogInformation("Tag: {TagName} already exists", breedString);
                     catTags.Add(new CatTag { Tag = tagResult.Value });
                 }
             }

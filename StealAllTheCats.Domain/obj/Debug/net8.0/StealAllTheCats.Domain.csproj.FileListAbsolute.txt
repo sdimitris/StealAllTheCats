@@ -11,3 +11,5 @@ C:\Users\d.soldatos\RiderProjects\StealAllTheCats\StealAllTheCats.Domain\obj\Deb
 C:\Users\d.soldatos\RiderProjects\StealAllTheCats\StealAllTheCats.Domain\obj\Debug\net8.0\StealAllTheCats.Domain.pdb
 C:\Users\d.soldatos\RiderProjects\StealAllTheCats\StealAllTheCats.Domain\obj\Debug\net8.0\ref\StealAllTheCats.Domain.dll
 C:\Users\d.soldatos\RiderProjects\StealAllTheCats\StealAllTheCats.Domain\obj\Debug\net8.0\StealAllTheCats.Domain.sourcelink.json
+C:\Users\d.soldatos\RiderProjects\StealAllTheCats\StealAllTheCats.Domain\bin\Debug\net8.0\StealAllTheCats.Domain.xml
+C:\Users\d.soldatos\RiderProjects\StealAllTheCats\StealAllTheCats.Domain\obj\Debug\net8.0\StealAllTheCats.Domain.xml

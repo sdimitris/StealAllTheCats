@@ -16,3 +16,6 @@ C:\Users\d.soldatos\RiderProjects\StealAllTheCats\StealAllTheCats.Infrastructure
 C:\Users\d.soldatos\RiderProjects\StealAllTheCats\StealAllTheCats.Infrastructure\obj\Debug\net8.0\StealAllTheCats.Infrastructure.genruntimeconfig.cache
 C:\Users\d.soldatos\RiderProjects\StealAllTheCats\StealAllTheCats.Infrastructure\obj\Debug\net8.0\ref\StealAllTheCats.Infrastructure.dll
 C:\Users\d.soldatos\RiderProjects\StealAllTheCats\StealAllTheCats.Infrastructure\obj\Debug\net8.0\StealAllTheCats.Infrastructure.sourcelink.json
+C:\Users\d.soldatos\RiderProjects\StealAllTheCats\StealAllTheCats.Infrastructure\bin\Debug\net8.0\StealAllTheCats.Infrastructure.xml
+C:\Users\d.soldatos\RiderProjects\StealAllTheCats\StealAllTheCats.Infrastructure\bin\Debug\net8.0\StealAllTheCats.Domain.xml
+C:\Users\d.soldatos\RiderProjects\StealAllTheCats\StealAllTheCats.Infrastructure\obj\Debug\net8.0\StealAllTheCats.Infrastructure.xml

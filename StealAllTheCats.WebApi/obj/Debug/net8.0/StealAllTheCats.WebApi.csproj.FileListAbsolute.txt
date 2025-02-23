@@ -188,3 +188,8 @@ C:\Users\d.soldatos\RiderProjects\StealAllTheCats\StealAllTheCats.WebApi\bin\Deb
 C:\Users\d.soldatos\RiderProjects\StealAllTheCats\StealAllTheCats.WebApi\bin\Debug\net8.0\Microsoft.Extensions.Logging.Configuration.dll
 C:\Users\d.soldatos\RiderProjects\StealAllTheCats\StealAllTheCats.WebApi\bin\Debug\net8.0\Microsoft.Extensions.Logging.Console.dll
 C:\Users\d.soldatos\RiderProjects\StealAllTheCats\StealAllTheCats.WebApi\obj\Debug\net8.0\StealAllTheCats.WebApi.sourcelink.json
+C:\Users\d.soldatos\RiderProjects\StealAllTheCats\StealAllTheCats.WebApi\bin\Debug\net8.0\StealAllTheCats.WebApi.xml
+C:\Users\d.soldatos\RiderProjects\StealAllTheCats\StealAllTheCats.WebApi\obj\Debug\net8.0\StealAllTheCats.WebApi.xml
+C:\Users\d.soldatos\RiderProjects\StealAllTheCats\StealAllTheCats.WebApi\bin\Debug\net8.0\StealAllTheCats.Application.xml
+C:\Users\d.soldatos\RiderProjects\StealAllTheCats\StealAllTheCats.WebApi\bin\Debug\net8.0\StealAllTheCats.Domain.xml
+C:\Users\d.soldatos\RiderProjects\StealAllTheCats\StealAllTheCats.WebApi\bin\Debug\net8.0\StealAllTheCats.Infrastructure.xml
