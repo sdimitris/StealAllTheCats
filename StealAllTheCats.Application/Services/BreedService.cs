@@ -31,7 +31,7 @@ public class BreedService : IBreedService
                     var newTagEntity = new TagEntity
                     {
                         Name = breedString,
-                        Created = DateTime.UtcNow,
+                        Created = DateTime.UtcNow, //should moved to db
                     };
 
                     var addTagResult = await AddTagAsync(newTagEntity);

@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StealAllTheCats.Infrastruct
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StealAllTheCats.Domain", "StealAllTheCats.Domain\StealAllTheCats.Domain.csproj", "{36F85807-D503-435A-A88F-E88E76FB5335}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StealAllTheCats.Tests", "StealAllTheCats.Tests\StealAllTheCats.Tests.csproj", "{A5E8A510-1233-42DC-944F-05F90F8C7D7A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{36F85807-D503-435A-A88F-E88E76FB5335}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36F85807-D503-435A-A88F-E88E76FB5335}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{36F85807-D503-435A-A88F-E88E76FB5335}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5E8A510-1233-42DC-944F-05F90F8C7D7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5E8A510-1233-42DC-944F-05F90F8C7D7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5E8A510-1233-42DC-944F-05F90F8C7D7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5E8A510-1233-42DC-944F-05F90F8C7D7A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

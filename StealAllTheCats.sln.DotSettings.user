@@ -1,0 +1,8 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=10a4c21b_002D5e6d_002D4af4_002Da6ba_002Dce53feffea8f/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="FetchCatsAsync_ShouldReturnSuccess_WhenCatsAreFetched" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::A5E8A510-1233-42DC-944F-05F90F8C7D7A::net8.0::StealAllTheCats.Tests.Services.CatManagerTests.FetchCatsAsync_ShouldReturnSuccess_WhenCatsAreFetched&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::A5E8A510-1233-42DC-944F-05F90F8C7D7A::net8.0::StealAllTheCats.Tests.Services.CatManagerTests.FetchCatsAsync_ShouldNotSaveToDb_WhenCatsExist&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::A5E8A510-1233-42DC-944F-05F90F8C7D7A::net8.0::StealAllTheCats.Tests.Services.BreedServiceTests&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
