@@ -32,6 +32,26 @@ public class CatRepository : ICatRepository
         }
     }
 
+    public async Task<Result<IEnumerable<CatEntity>>> GetCatsByTagAsync(string tag, int page, int pageSize)
+    {
+        try
+        {
+            var cats = await _context.Cats
+                .Where(c => c.CatTags.Any(t => t.Tag.Name == tag))
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+            
+            return Result<IEnumerable<CatEntity>>.Ok(cats);
+        }
+
+        catch (Exception ex)
+        {
+            return Result<IEnumerable<CatEntity>>.Failure(Error.New("An error occurred while fetching the cats from the database", ex, KnownApplicationErrorEnum.SqlGenericError));
+        }
+        
+    }
+
     public async Task<Result<CatEntity?>> GetCatByIdAsync(int id)
     {
         try

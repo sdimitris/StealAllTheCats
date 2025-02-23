@@ -1,4 +1,5 @@
 using StealAllTheCats.Application.Interfaces;
+using StealAllTheCats.Domain.Common.Enums;
 using StealAllTheCats.Domain.Common.Result;
 using StealAllTheCats.Domain.Entities;
 using StealAllTheCats.Domain.Repositories;
@@ -34,6 +35,24 @@ public class CatService : ICatService
         }
 
         return Result<CatEntity?>.Ok(catResult.Value);;
+    }
+    
+    public async Task<Result<IEnumerable<CatEntity>>> GetCatsByTagAsync(string tag, int page, int pageSize)
+    {
+        try
+        {
+            var cats = await _catRepository.GetCatsByTagAsync(tag, page, pageSize);
+            if (cats.IsFailure)
+            {
+                return Result<IEnumerable<CatEntity>>.FromFailure(cats);
+            }
+            
+            return Result<IEnumerable<CatEntity>>.Ok(cats.Value);
+        }
+        catch (Exception ex)
+        {
+            return Result<IEnumerable<CatEntity>>.Failure(Error.New("An error occurred while fetching the cats from the database", ex, KnownApplicationErrorEnum.SqlGenericError));
+        }
     }
     
     public async Task<Result> AddCatAsync(CatEntity catEntity)
