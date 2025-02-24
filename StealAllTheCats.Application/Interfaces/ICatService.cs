@@ -11,7 +11,4 @@ public interface ICatService
     Task<Result> AddCatAsync(CatEntity catEntity);
     
     Task<Result<IEnumerable<CatDto>>> GetCatsByTagAsync(string tag, int page, int pageSize);
-    
-    Task<Result<bool>> UpdateCatAsync(CatEntity catEntity);
-
 }

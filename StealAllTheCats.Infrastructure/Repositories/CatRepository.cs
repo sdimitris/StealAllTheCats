@@ -82,23 +82,6 @@ public class CatRepository : ICatRepository
             return Result.Failure(Error.New("An error occurred while adding the cat to the database", e, KnownApplicationErrorEnum.SqlGenericError));
         }
     }
-    
-    public async Task<Result<bool>> UpdateCatΙmageDataAsync(CatEntity existingCat, CatEntity catEntity)
-    {
-        try
-        {
-            _context.Attach(existingCat);
-
-            existingCat.ImageData = catEntity.ImageData;
-        
-            await _context.SaveChangesAsync();
-            return Result<bool>.Ok(true);
-        }
-        catch (Exception e)
-        {
-            return Result<bool>.Failure(Error.New($"An error occurred while updating the cat: {existingCat.CatId} to the database", e, KnownApplicationErrorEnum.SqlGenericError));
-        }
-    }
 
     public async Task<Result> SaveChangesAsync()
     {

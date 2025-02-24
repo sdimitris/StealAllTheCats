@@ -22,7 +22,7 @@ public class CatEntity
     /// <summary>
     /// Image url
     /// </summary>
-    public byte[] ImageData { get; set; } = [];
+    public string ImageUrl { get; set; } = String.Empty;
     public DateTime Created { get; set; } = DateTime.UtcNow;
     public List<CatTag> CatTags { get; set; } = new();
 }

@@ -10,7 +10,20 @@ Microsoft SQL Server need to be installed on your machine.
 * Apply Migrations
 
   ```dotnet ef database update --project StealAllTheCats.Infrastructure --startup-project StealAllTheCats.WebApi```
-## Running the Application
+
+# Running the Application
+
+## Local
+
+### Running the Application Locally
+
+```dotnet run --project .\StealAllTheCats.WebApi\```
+
+### Building the Application Locally
+
+```dotnet build StealAllTheCats.sln```
+
+## Using Docker
 
 ### Building The Application Image
 
@@ -21,5 +34,9 @@ Microsoft SQL Server need to be installed on your machine.
 
 Now you will be able to navigate at http://localhost:8080/swagger/index.html
 
+
+## Running Tests
+
+```dotnet test .\StealAllTheCats.Tests\StealAllTheCats.Tests.csproj```
 
 

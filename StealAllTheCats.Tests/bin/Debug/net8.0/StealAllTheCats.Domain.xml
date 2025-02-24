@@ -19,7 +19,7 @@
             Height of the cat image
             </summary>
         </member>
-        <member name="P:StealAllTheCats.Domain.Entities.CatEntity.ImageData">
+        <member name="P:StealAllTheCats.Domain.Entities.CatEntity.ImageUrl">
             <summary>
             Image url
             </summary>

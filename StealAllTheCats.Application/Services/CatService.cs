@@ -60,30 +60,6 @@ public class CatService : ICatService
         }
     }
 
-    public async Task<Result<bool>> UpdateCatAsync(CatEntity catEntity)
-    {
-        var existingCat = await _catRepository.GetCatByCatIdAsync(catEntity.CatId);
-        if (existingCat.IsFailure)
-        {
-            return Result<bool>.FromFailure(existingCat);
-        }
-
-        if (existingCat.Value is null)
-        {
-            return Result<bool>.Failure(Error.New($"Cat with id: {catEntity.CatId} not found", null,
-                KnownApplicationErrorEnum.CatNotFound));
-        }
-
-        var updateResult = await _catRepository.UpdateCatΙmageDataAsync(existingCat.Value, catEntity);
-        if (updateResult.IsFailure)
-        {
-            return Result<bool>.FromFailure(updateResult);
-        }
-
-        return Result<bool>.Ok(true);
-    }
-
-
     public async Task<Result> AddCatAsync(CatEntity catEntity)
     {
         var addCatResult = await _catRepository.AddCatAsync(catEntity);
@@ -125,7 +101,7 @@ public class CatService : ICatService
             CatId = catEntity.CatId,
             Width = catEntity.Width,
             Height = catEntity.Height,
-            ImageData = catEntity.ImageData,
+            ImageUrl = catEntity.ImageUrl,
             Tags = catEntity.CatTags.Select(x => x.Tag.Name).ToList()
         };
 }

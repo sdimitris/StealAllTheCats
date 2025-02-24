@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using StealAllTheCats.Application.Interfaces;
 using StealAllTheCats.Domain.Dtos;
-using StealAllTheCats.Domain.Entities;
 
 namespace StealAllTheCats.Controllers;
 

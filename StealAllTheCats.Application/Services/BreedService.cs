@@ -52,6 +52,7 @@ public class BreedService : IBreedService
     
     private async Task<Result<TagEntity?>> GetTagByNameAsync(string tagName)
     {
+        //should add caching here and store the tag ids that we already have
         var catResult = await _catTagRepository.GetCatTagByNameAsync(tagName);
         if (catResult.IsFailure)
         {

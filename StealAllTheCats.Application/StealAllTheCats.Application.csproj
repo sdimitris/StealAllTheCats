@@ -22,4 +22,8 @@
       <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Remove="Interfaces\IRedisService.cs" />
+    </ItemGroup>
+
 </Project>

@@ -1,4 +1,3 @@
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Moq;
 using StealAllTheCats.Application.Interfaces;
@@ -41,28 +40,9 @@ public class CatManagerTests
         var catsApiHttpServiceMock = new Mock<ICatsApiHttpService>();
         catsApiHttpServiceMock.Setup(x => x.GetCatsAsync(1, 25))
             .ReturnsAsync(Result<IEnumerable<CatApiResponse>>.Ok(catApiResponseList));
-        catsApiHttpServiceMock.Setup(x => x.DownloadImageFromApiAsync(It.IsAny<string>()))
-            .ReturnsAsync(Result<byte[]>.Ok(new byte[1]));
 
         _catServiceMock.Setup(x => x.GetCatByCatIdAsync("1")).ReturnsAsync(Result<CatDto?>.Ok(null));
         _catServiceMock.Setup(x => x.AddCatAsync(It.IsAny<CatEntity>())).ReturnsAsync(Result.Ok);
-        _catServiceMock.Setup(service => service.UpdateCatAsync(It.IsAny<CatEntity>()))
-            .ReturnsAsync(Result<bool>.Ok(true));
-        
-        var serviceProvider = new Mock<IServiceProvider>();
-        var serviceScope = new Mock<IServiceScope>();
-        serviceProvider.Setup(x => x.GetService(typeof(ICatService))).Returns(_catServiceMock.Object);
-        serviceScope.Setup(x => x.ServiceProvider).Returns(serviceProvider.Object);
-
-        var serviceScopeFactory = new Mock<IServiceScopeFactory>();
-        serviceScopeFactory
-            .Setup(x => x.CreateScope())
-            .Returns(serviceScope.Object);
-
-        
-        catsApiHttpServiceMock
-            .Setup(service => service.DownloadImageFromApiAsync(It.IsAny<string>()))
-            .ReturnsAsync(Result<byte[]>.Ok(new byte[]{1}));
         
         var breedServiceMock = new Mock<IBreedService>();
         breedServiceMock.Setup(x => x.ConstructBreeds("Affectionate, Intelligent, Curious, Social, Playful"))
@@ -70,7 +50,7 @@ public class CatManagerTests
 
         var loggerMock = new Mock<ILogger<CatManager>>();
         var catManager = new CatManager(_catServiceMock.Object, breedServiceMock.Object, catsApiHttpServiceMock.Object,
-            loggerMock.Object, serviceScopeFactory.Object);
+            loggerMock.Object);
 
         // Act
         var result = await catManager.FetchCatsAsync();
@@ -103,46 +83,27 @@ public class CatManagerTests
         var catsApiHttpServiceMock = new Mock<ICatsApiHttpService>();
         catsApiHttpServiceMock.Setup(x => x.GetCatsAsync(1, 25))
             .ReturnsAsync(Result<IEnumerable<CatApiResponse>>.Ok(catApiResponseList));
-        catsApiHttpServiceMock.Setup(x => x.DownloadImageFromApiAsync(It.IsAny<string>()))
-            .ReturnsAsync(Result<byte[]>.Ok(new byte[1]));
 
         var c = new CatDto()
         {
             CatId = "1",
-            ImageData = new byte[1],
+            ImageUrl = "someurl",
             Width = 200,
             Height = 200,
         };
 
         _catServiceMock.Setup(x => x.GetCatByCatIdAsync("1")).ReturnsAsync(Result<CatDto?>.Ok(c));
-        _catServiceMock.Setup(service => service.UpdateCatAsync(It.IsAny<CatEntity>()))
-            .ReturnsAsync(Result<bool>.Ok(true));
 
         var breedServiceMock = new Mock<IBreedService>();
         breedServiceMock.Setup(x => x.ConstructBreeds("Affectionate, Intelligent, Curious, Social, Playful"))
             .ReturnsAsync(Result<IEnumerable<CatTag>>.Ok(new List<CatTag>()));
 
         var loggerMock = new Mock<ILogger<CatManager>>();
-
-        var serviceProvider = new Mock<IServiceProvider>();
-        var serviceScope = new Mock<IServiceScope>();
-        serviceScope.Setup(x => x.ServiceProvider).Returns(serviceProvider.Object);
-        serviceProvider.Setup(x => x.GetService(typeof(ICatService))).Returns(_catServiceMock.Object);
-        var serviceScopeFactory = new Mock<IServiceScopeFactory>();
-        serviceScopeFactory
-            .Setup(x => x.CreateScope())
-            .Returns(serviceScope.Object);
-        
-        catsApiHttpServiceMock
-            .Setup(service => service.DownloadImageFromApiAsync(It.IsAny<string>()))
-            .ReturnsAsync(Result<byte[]>.Ok(new byte[]{1}));
-
         var catManager = new CatManager(
             _catServiceMock.Object,
             breedServiceMock.Object,
             catsApiHttpServiceMock.Object,
-            loggerMock.Object,
-            serviceScopeFactory.Object
+            loggerMock.Object
         );
 
         // Act

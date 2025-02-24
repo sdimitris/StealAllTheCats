@@ -12,15 +12,13 @@ public class CatManager : ICatManager
     private readonly IBreedService _breedService;
     private readonly ICatsApiHttpService _catsApiHttpService;
     private readonly ILogger<CatManager> _logger;
-    private readonly IServiceScopeFactory _serviceScopeFactory;
 
-    public CatManager(ICatService catService, IBreedService breedService, ICatsApiHttpService catsApiHttpService, ILogger<CatManager> logger, IServiceScopeFactory scopeFactory)
+    public CatManager(ICatService catService, IBreedService breedService, ICatsApiHttpService catsApiHttpService, ILogger<CatManager> logger)
     {
         ArgumentNullException.ThrowIfNull(_catService = catService);
         ArgumentNullException.ThrowIfNull(_breedService = breedService);
         ArgumentNullException.ThrowIfNull(_catsApiHttpService = catsApiHttpService);
         ArgumentNullException.ThrowIfNull(_logger = logger);
-        ArgumentNullException.ThrowIfNull(_serviceScopeFactory = scopeFactory);
     }
 
     public async Task<Result> FetchCatsAsync()
@@ -30,13 +28,12 @@ public class CatManager : ICatManager
         {
             return Result.FromFailure(catsResult);
         }
-
-        var tasks = new List<Task>();
-
+        
         foreach (var cat in catsResult.Value)
         {
             List<CatTag> catTags = new();
 
+            //should add caching here and store the ids of the cats that we already have
             var catFromDb = await _catService.GetCatByCatIdAsync(cat.Id);
             if (catFromDb.IsFailure)
             {
@@ -65,6 +62,7 @@ public class CatManager : ICatManager
                 CatId = cat.Id,
                 Width = cat.Width,
                 Height = cat.Height,
+                ImageUrl = cat.Url,
                 CatTags = catTags
             };
 
@@ -73,35 +71,8 @@ public class CatManager : ICatManager
             {
                 return Result.FromFailure(addCatResult);
             }
-
-            var imageDownloadTask = DownloadImageAndUpdateCatAsync(catEntity, cat.Url);
-            tasks.Add(imageDownloadTask);
         }
-
-        await Task.WhenAll(tasks);
-
-        return Result.Ok();
-    }
-
-    private async Task<Result> DownloadImageAndUpdateCatAsync(CatEntity catEntity, string imageUrl)
-    {
-        var imageData = await _catsApiHttpService.DownloadImageFromApiAsync(new Uri(imageUrl).ToString());
-        if (imageData.IsFailure)
-        {
-            return Result.FromFailure(imageData);
-        }
-
-        catEntity.ImageData = imageData.Value;
-
-        using var scope = _serviceScopeFactory.CreateScope();
-        var catService = scope.ServiceProvider.GetRequiredService<ICatService>();
-        var updateCatResult = await catService.UpdateCatAsync(catEntity);
-
-        if (updateCatResult.IsFailure)
-        {
-            return Result.FromFailure(updateCatResult);
-        }
-
+        
         return Result.Ok();
     }
 
