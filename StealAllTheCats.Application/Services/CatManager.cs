@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using StealAllTheCats.Application.Interfaces;
 using StealAllTheCats.Domain.Common.Result;
 using StealAllTheCats.Domain.Entities;
@@ -35,7 +34,7 @@ public class CatManager : ICatManager
 
             //should add caching here and store the ids of the cats that we already have
             var catFromDb = await _catService.GetCatByCatIdAsync(cat.Id);
-            if (catFromDb.IsFailure)
+            if (catFromDb.IsFailure )
             {
                 return Result.FromFailure(catFromDb);
             }

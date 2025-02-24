@@ -65,7 +65,7 @@ public class CatController : ControllerBase
             return Problem(title: catResult.Error.Message);
         }
 
-        return catResult.Value == null ? NotFound() : Ok(catResult.Value);
+        return catResult.Value == null ? Problem(title: $"Cat with id {catId} not found", statusCode: 404) : Ok(catResult.Value);
     }
 
     /// <summary>
