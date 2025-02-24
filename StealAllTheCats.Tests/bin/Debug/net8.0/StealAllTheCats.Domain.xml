@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>StealAllTheCats.Domain</name>
+    </assembly>
+    <members>
+        <member name="P:StealAllTheCats.Domain.Entities.CatEntity.CatId">
+            <summary>
+              The unique identifier for the cat
+            </summary>
+        </member>
+        <member name="P:StealAllTheCats.Domain.Entities.CatEntity.Width">
+            <summary>
+            Width of the cat image
+            </summary>
+        </member>
+        <member name="P:StealAllTheCats.Domain.Entities.CatEntity.Height">
+            <summary>
+            Height of the cat image
+            </summary>
+        </member>
+        <member name="P:StealAllTheCats.Domain.Entities.CatEntity.ImageUrl">
+            <summary>
+            Image url
+            </summary>
+        </member>
+        <member name="T:StealAllTheCats.Domain.Entities.CatTag">
+            <summary>
+            Represents a cat entity.
+            </summary>
+        </member>
+        <member name="P:StealAllTheCats.Domain.Entities.CatTag.CatId">
+            <summary>
+            The unique identifier for the cat
+            </summary>
+        </member>
+        <member name="P:StealAllTheCats.Domain.Entities.CatTag.TagId">
+            <summary>
+            The tag id of the cat
+            </summary>
+        </member>
+        <member name="P:StealAllTheCats.Domain.Entities.TagEntity.Id">
+            <summary>
+            Id of the tag
+            </summary>
+        </member>
+        <member name="P:StealAllTheCats.Domain.Entities.TagEntity.Name">
+            <summary>
+            The name of the tag
+            </summary>
+        </member>
+        <member name="P:StealAllTheCats.Domain.Entities.TagEntity.Created">
+            <summary>
+            Created date of the tag
+            </summary>
+        </member>
+        <member name="P:StealAllTheCats.Domain.Entities.TagEntity.CatTags">
+            <summary>
+            List of cats that have this tag
+            </summary>
+        </member>
+    </members>
+</doc>

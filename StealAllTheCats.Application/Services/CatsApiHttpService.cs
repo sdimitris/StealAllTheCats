@@ -22,15 +22,13 @@ public class CatsApiHttpService : ICatsApiHttpService
     public async Task<Result<IEnumerable<CatApiResponse>>> GetCatsAsync(int page, int pageSize)
     {
         using var httpClient = _httpClientFactory.CreateClient();
-
-        var requestUrl = new Uri($"{_catsApiSettings.BaseUrl}?limit={pageSize}&page={page}");       
-        
+        var uri = new Uri(_catsApiSettings.BaseUrl).ToString().TrimEnd('/') +$"?limit={pageSize}&page={page}";
         httpClient.DefaultRequestHeaders.Add("x-api-key", _catsApiSettings.ApiKey); // Set API Key in headers
         List<CatApiResponse> cats;
 
         try
         {
-            var response = await httpClient.GetAsync(requestUrl);
+            var response = await httpClient.GetAsync(uri);
             if (!response.IsSuccessStatusCode)
             {
                 return Result<IEnumerable<CatApiResponse>>.Failure(Error.New($"Failed to fetch cats from API. {response.StatusCode}", null,
