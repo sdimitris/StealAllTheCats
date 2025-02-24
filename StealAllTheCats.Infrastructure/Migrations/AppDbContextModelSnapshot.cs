@@ -40,9 +40,9 @@ namespace StealAllTheCats.Infrastructure.Migrations
                     b.Property<int>("Height")
                         .HasColumnType("int");
 
-                    b.Property<string>("ImageUrl")
+                    b.Property<byte[]>("ImageData")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<int>("Width")
                         .HasColumnType("int");

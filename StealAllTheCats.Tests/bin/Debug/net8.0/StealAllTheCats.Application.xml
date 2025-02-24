@@ -4,5 +4,11 @@
         <name>StealAllTheCats.Application</name>
     </assembly>
     <members>
+        <member name="M:StealAllTheCats.Application.Interfaces.ICatManager.FetchCatsAsync">
+            <summary>
+            Fetch cats from the API and stores the cats and its tags in the database
+            </summary>
+            <returns></returns>
+        </member>
     </members>
 </doc>

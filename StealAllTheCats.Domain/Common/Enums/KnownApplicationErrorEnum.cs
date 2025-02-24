@@ -6,4 +6,5 @@ public enum KnownApplicationErrorEnum
     GenericError,
     SqlGenericError,
     CatsApiError,
+    CatNotFound
 }

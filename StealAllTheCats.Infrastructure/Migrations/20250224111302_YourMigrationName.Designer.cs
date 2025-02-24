@@ -12,7 +12,7 @@ using StealAllTheCats.Infrastructure.Database;
 namespace StealAllTheCats.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250222203631_YourMigrationName")]
+    [Migration("20250224111302_YourMigrationName")]
     partial class YourMigrationName
     {
         /// <inheritdoc />
@@ -43,9 +43,9 @@ namespace StealAllTheCats.Infrastructure.Migrations
                     b.Property<int>("Height")
                         .HasColumnType("int");
 
-                    b.Property<string>("ImageUrl")
+                    b.Property<byte[]>("ImageData")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<int>("Width")
                         .HasColumnType("int");

@@ -3,6 +3,7 @@ using StealAllTheCats.Domain.Common.Enums;
 using StealAllTheCats.Domain.Common.Result;
 using StealAllTheCats.Domain.Entities;
 using StealAllTheCats.Domain.Repositories;
+
 namespace StealAllTheCats.Application.Services;
 
 public class CatService : ICatService
@@ -16,16 +17,15 @@ public class CatService : ICatService
 
     public async Task<Result<IEnumerable<CatEntity>>> GetCatsAsync(int page, int pageSize)
     {
-        
-        var catsResult =  await _catRepository.GetCatsAsync(page, pageSize);
+        var catsResult = await _catRepository.GetCatsAsync(page, pageSize);
         if (catsResult.IsFailure)
         {
             return Result<IEnumerable<CatEntity>>.FromFailure(catsResult);
         }
-        
+
         return Result<IEnumerable<CatEntity>>.Ok(catsResult.Value);
     }
-    
+
     public async Task<Result<CatEntity?>> GetCatByCatIdAsync(string catId)
     {
         var catResult = await _catRepository.GetCatByCatIdAsync(catId);
@@ -34,9 +34,10 @@ public class CatService : ICatService
             return Result<CatEntity?>.FromFailure(catResult);
         }
 
-        return Result<CatEntity?>.Ok(catResult.Value);;
+        return Result<CatEntity?>.Ok(catResult.Value);
+        ;
     }
-    
+
     public async Task<Result<IEnumerable<CatEntity>>> GetCatsByTagAsync(string tag, int page, int pageSize)
     {
         try
@@ -46,31 +47,57 @@ public class CatService : ICatService
             {
                 return Result<IEnumerable<CatEntity>>.FromFailure(cats);
             }
-            
+
             return Result<IEnumerable<CatEntity>>.Ok(cats.Value);
         }
         catch (Exception ex)
         {
-            return Result<IEnumerable<CatEntity>>.Failure(Error.New("An error occurred while fetching the cats from the database", ex, KnownApplicationErrorEnum.SqlGenericError));
+            return Result<IEnumerable<CatEntity>>.Failure(Error.New(
+                "An error occurred while fetching the cats from the database", ex,
+                KnownApplicationErrorEnum.SqlGenericError));
         }
     }
-    
+
+    public async Task<Result<bool>> UpdateCatAsync(CatEntity catEntity)
+    {
+        var existingCat = await _catRepository.GetCatByCatIdAsync(catEntity.CatId);
+        if (existingCat.IsFailure)
+        {
+            return Result<bool>.FromFailure(existingCat);
+        }
+
+        if (existingCat.Value is null)
+        {
+            return Result<bool>.Failure(Error.New($"Cat with id: {catEntity.CatId} not found", null,
+                KnownApplicationErrorEnum.CatNotFound));
+        }
+
+        var updateResult = await _catRepository.UpdateCatAsync(existingCat.Value, catEntity);
+        if (updateResult.IsFailure)
+        {
+            return Result<bool>.FromFailure(updateResult);
+        }
+
+        return Result<bool>.Ok(true);
+    }
+
+
     public async Task<Result> AddCatAsync(CatEntity catEntity)
     {
         var addCatResult = await _catRepository.AddCatAsync(catEntity);
-        
+
         if (addCatResult.IsFailure)
         {
             return Result.FromFailure(addCatResult);
         }
 
         var saveResult = await _catRepository.SaveChangesAsync();
-        
+
         if (saveResult.IsFailure)
         {
             return Result.FromFailure(addCatResult);
         }
-        
+
         return Result.Ok();
     }
 }

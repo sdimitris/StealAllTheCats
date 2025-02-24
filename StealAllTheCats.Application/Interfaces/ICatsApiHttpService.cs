@@ -6,4 +6,6 @@ namespace StealAllTheCats.Application.Interfaces;
 public interface ICatsApiHttpService
 {
     public Task<Result<IEnumerable<CatApiResponse>>> GetCatsAsync(int page, int pageSize);
+
+    public Task<Result<byte[]>> DownloadImageFromApiAsync(string imageUrl);
 }

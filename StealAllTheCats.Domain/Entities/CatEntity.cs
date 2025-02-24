@@ -18,11 +18,11 @@ public class CatEntity
     /// Height of the cat image
     /// </summary>
     public int Height { get; set; }
-    
+
     /// <summary>
     /// Image url
     /// </summary>
-    public string ImageUrl { get; set; }
+    public byte[] ImageData { get; set; } = [];
     public DateTime Created { get; set; } = DateTime.UtcNow;
     public List<CatTag> CatTags { get; set; } = new();
 }

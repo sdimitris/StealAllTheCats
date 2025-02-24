@@ -52,18 +52,6 @@ public class CatRepository : ICatRepository
         
     }
 
-    public async Task<Result<CatEntity?>> GetCatByIdAsync(int id)
-    {
-        try
-        {
-            return Result<CatEntity?>.Ok(await _context.Cats.FindAsync(id));
-        }
-        catch (Exception e)
-        {
-            return Result<CatEntity?>.Failure(Error.New("An error occurred while fetching the cat from the database", e, KnownApplicationErrorEnum.SqlGenericError));
-        }
-    }
-
     public async Task<Result<CatEntity?>> GetCatByCatIdAsync(string catId)
     {
         try
@@ -87,6 +75,25 @@ public class CatRepository : ICatRepository
         catch (Exception e)
         {
             return Result.Failure(Error.New("An error occurred while adding the cat to the database", e, KnownApplicationErrorEnum.SqlGenericError));
+        }
+    }
+    
+    public async Task<Result<bool>> UpdateCatAsync(CatEntity existingCat, CatEntity catEntity)
+    {
+        try
+        {
+            existingCat.ImageData = catEntity.ImageData;
+            existingCat.CatTags = catEntity.CatTags;
+
+            existingCat.Width = catEntity.Width;
+            existingCat.Height = catEntity.Height;
+            
+            await _context.SaveChangesAsync();
+            return Result<bool>.Ok(true);
+        }
+        catch (Exception e)
+        {
+            return Result<bool>.Failure(Error.New($"An error occurred while updating the cat: {existingCat.CatId} to the database", e, KnownApplicationErrorEnum.SqlGenericError));
         }
     }
 

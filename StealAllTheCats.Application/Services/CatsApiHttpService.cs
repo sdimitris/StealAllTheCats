@@ -31,7 +31,7 @@ public class CatsApiHttpService : ICatsApiHttpService
             var response = await httpClient.GetAsync(uri);
             if (!response.IsSuccessStatusCode)
             {
-                return Result<IEnumerable<CatApiResponse>>.Failure(Error.New($"Failed to fetch cats from API. {response.StatusCode}", null,
+                return Result<IEnumerable<CatApiResponse>>.Failure(Error.New($"Failed to fetch cats from API. ErrorCode:  {response.StatusCode}", null,
                     KnownApplicationErrorEnum.CatsApiError));
             }
 
@@ -44,5 +44,19 @@ public class CatsApiHttpService : ICatsApiHttpService
         }
 
         return Result<IEnumerable<CatApiResponse>>.Ok(cats);
+    }
+    
+    public async Task<Result<byte[]>> DownloadImageFromApiAsync(string imageUrl)
+    {
+        using var httpClient = new HttpClient();
+        try
+        {
+            var imageData = await httpClient.GetByteArrayAsync(imageUrl);
+            return Result<byte[]>.Ok(imageData);
+        }
+        catch (Exception e)
+        {
+            return Result<byte[]>.Failure(Error.New($"Failed to download image: {imageUrl} from API", e, KnownApplicationErrorEnum.CatsApiError));
+        }  
     }
 }

@@ -1,5 +1,4 @@
-﻿using System.Text;
-using StealAllTheCats.Domain.Common.Enums;
+﻿using StealAllTheCats.Domain.Common.Enums;
 
 namespace StealAllTheCats.Domain.Common.Result;
 
@@ -21,6 +20,6 @@ public class Error
 
     public string GetError()
     {
-        return $"Error: {Message} | error code: {ApplicationError} | Exception: {Exception?.Message}";
+        return $"ApplicationError: {Message} | error code: {ApplicationError} | ExceptionMessage: {Exception?.Message}";
     }
 }
