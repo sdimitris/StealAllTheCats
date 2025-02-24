@@ -1,6 +1,4 @@
-using System.Reflection;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Models;
 using StealAllTheCats.Application.Interfaces;
 using StealAllTheCats.Application.Services;
 using StealAllTheCats.Domain.Configuration;
@@ -44,6 +42,11 @@ builder.Services.AddSwaggerGen(c =>
     }
 });
 
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenAnyIP(8080); // HTTP port
+});
+
 builder.Services.Configure<CatsApiSettings>(
     builder.Configuration.GetSection("CatsApiSettings"));
 
@@ -51,11 +54,9 @@ builder.Services.AddLogging(loggingBuilder => loggingBuilder.AddConsole());
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
+
 
 app.UseAuthorization();
 app.MapControllers();

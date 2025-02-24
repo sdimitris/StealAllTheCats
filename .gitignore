@@ -1,8 +1,14 @@
 ﻿.idea
 
 # Ignore build output
-bin/
-obj/
+StealAllTheCats.WebApi/bin
+StealAllTheCats.Domain/bin
+StealAllTheCats.Application/bin
+StealAllTheCats.Infrastructure/bin
+StealAllTheCats.WebApi/obj
+StealAllTheCats.Domain/obj
+StealAllTheCats.Application/obj
+StealAllTheCats.Infrastructure/obj
 
 # Ignore NuGet packages
 packages/
