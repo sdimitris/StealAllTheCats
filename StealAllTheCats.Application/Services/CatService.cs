@@ -1,6 +1,7 @@
 using StealAllTheCats.Application.Interfaces;
 using StealAllTheCats.Domain.Common.Enums;
 using StealAllTheCats.Domain.Common.Result;
+using StealAllTheCats.Domain.Dtos;
 using StealAllTheCats.Domain.Entities;
 using StealAllTheCats.Domain.Repositories;
 
@@ -15,44 +16,45 @@ public class CatService : ICatService
         ArgumentNullException.ThrowIfNull(_catRepository = catRepository);
     }
 
-    public async Task<Result<IEnumerable<CatEntity>>> GetCatsAsync(int page, int pageSize)
+    public async Task<Result<IEnumerable<CatDto>>> GetCatsAsync(int page, int pageSize)
     {
         var catsResult = await _catRepository.GetCatsAsync(page, pageSize);
         if (catsResult.IsFailure)
         {
-            return Result<IEnumerable<CatEntity>>.FromFailure(catsResult);
+            return Result<IEnumerable<CatDto>>.FromFailure(catsResult);
         }
 
-        return Result<IEnumerable<CatEntity>>.Ok(catsResult.Value);
+
+        return Result<IEnumerable<CatDto>>.Ok(ConvertToDtoListFromCatEntityList(catsResult.Value));
     }
 
-    public async Task<Result<CatEntity?>> GetCatByCatIdAsync(string catId)
+    public async Task<Result<CatDto?>> GetCatByCatIdAsync(string catId)
     {
         var catResult = await _catRepository.GetCatByCatIdAsync(catId);
         if (catResult.IsFailure)
         {
-            return Result<CatEntity?>.FromFailure(catResult);
+            return Result<CatDto?>.FromFailure(catResult);
         }
 
-        return Result<CatEntity?>.Ok(catResult.Value);
-        ;
+        return Result<CatDto?>.Ok(ConvertToCatDto(catResult.Value));
     }
 
-    public async Task<Result<IEnumerable<CatEntity>>> GetCatsByTagAsync(string tag, int page, int pageSize)
+    public async Task<Result<IEnumerable<CatDto>>> GetCatsByTagAsync(string tag, int page, int pageSize)
     {
         try
         {
             var cats = await _catRepository.GetCatsByTagAsync(tag, page, pageSize);
             if (cats.IsFailure)
             {
-                return Result<IEnumerable<CatEntity>>.FromFailure(cats);
+                return Result<IEnumerable<CatDto>>.FromFailure(cats);
             }
 
-            return Result<IEnumerable<CatEntity>>.Ok(cats.Value);
+
+            return Result<IEnumerable<CatDto>>.Ok(ConvertToDtoListFromCatEntityList(cats.Value));
         }
         catch (Exception ex)
         {
-            return Result<IEnumerable<CatEntity>>.Failure(Error.New(
+            return Result<IEnumerable<CatDto>>.Failure(Error.New(
                 "An error occurred while fetching the cats from the database", ex,
                 KnownApplicationErrorEnum.SqlGenericError));
         }
@@ -72,7 +74,7 @@ public class CatService : ICatService
                 KnownApplicationErrorEnum.CatNotFound));
         }
 
-        var updateResult = await _catRepository.UpdateCatAsync(existingCat.Value, catEntity);
+        var updateResult = await _catRepository.UpdateCatΙmageDataAsync(existingCat.Value, catEntity);
         if (updateResult.IsFailure)
         {
             return Result<bool>.FromFailure(updateResult);
@@ -100,4 +102,30 @@ public class CatService : ICatService
 
         return Result.Ok();
     }
+
+    private IEnumerable<CatDto> ConvertToDtoListFromCatEntityList(IEnumerable<CatEntity> list)
+    {
+        var dtoList = new List<CatDto>();
+        foreach (var catEntity in list)
+        {
+            
+            var catDto = ConvertToCatDto(catEntity);
+            if (catDto is null)
+                continue;
+            dtoList.Add(catDto);
+        }
+
+        return dtoList;
+    }
+
+    private CatDto? ConvertToCatDto(CatEntity? catEntity) => catEntity is null
+        ? null
+        : new CatDto
+        {
+            CatId = catEntity.CatId,
+            Width = catEntity.Width,
+            Height = catEntity.Height,
+            ImageData = catEntity.ImageData,
+            Tags = catEntity.CatTags.Select(x => x.Tag.Name).ToList()
+        };
 }

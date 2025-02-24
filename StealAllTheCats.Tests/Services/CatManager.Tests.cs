@@ -4,6 +4,7 @@ using Moq;
 using StealAllTheCats.Application.Interfaces;
 using StealAllTheCats.Application.Services;
 using StealAllTheCats.Domain.Common.Result;
+using StealAllTheCats.Domain.Dtos;
 using StealAllTheCats.Domain.Entities;
 
 namespace StealAllTheCats.Tests.Services;
@@ -43,7 +44,7 @@ public class CatManagerTests
         catsApiHttpServiceMock.Setup(x => x.DownloadImageFromApiAsync(It.IsAny<string>()))
             .ReturnsAsync(Result<byte[]>.Ok(new byte[1]));
 
-        _catServiceMock.Setup(x => x.GetCatByCatIdAsync("1")).ReturnsAsync(Result<CatEntity?>.Ok(null));
+        _catServiceMock.Setup(x => x.GetCatByCatIdAsync("1")).ReturnsAsync(Result<CatDto?>.Ok(null));
         _catServiceMock.Setup(x => x.AddCatAsync(It.IsAny<CatEntity>())).ReturnsAsync(Result.Ok);
         _catServiceMock.Setup(service => service.UpdateCatAsync(It.IsAny<CatEntity>()))
             .ReturnsAsync(Result<bool>.Ok(true));
@@ -105,16 +106,15 @@ public class CatManagerTests
         catsApiHttpServiceMock.Setup(x => x.DownloadImageFromApiAsync(It.IsAny<string>()))
             .ReturnsAsync(Result<byte[]>.Ok(new byte[1]));
 
-        var c = new CatEntity
+        var c = new CatDto()
         {
-            Id = 1,
             CatId = "1",
             ImageData = new byte[1],
             Width = 200,
             Height = 200,
         };
 
-        _catServiceMock.Setup(x => x.GetCatByCatIdAsync("1")).ReturnsAsync(Result<CatEntity?>.Ok(c));
+        _catServiceMock.Setup(x => x.GetCatByCatIdAsync("1")).ReturnsAsync(Result<CatDto?>.Ok(c));
         _catServiceMock.Setup(service => service.UpdateCatAsync(It.IsAny<CatEntity>()))
             .ReturnsAsync(Result<bool>.Ok(true));
 

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using StealAllTheCats.Application.Interfaces;
+using StealAllTheCats.Domain.Dtos;
 using StealAllTheCats.Domain.Entities;
 
 namespace StealAllTheCats.Controllers;
@@ -55,7 +56,7 @@ public class CatController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult<CatEntity>> GetCatById(string catId)
+    public async Task<ActionResult<CatDto>> GetCatById(string catId)
     {
         var catResult = await _catService.GetCatByCatIdAsync(catId);
 
@@ -80,7 +81,7 @@ public class CatController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult<IEnumerable<CatEntity>>> GetCats([FromQuery] int page = 1, [FromQuery] int pageSize = 10)
+    public async Task<ActionResult<IEnumerable<CatDto>>> GetCats([FromQuery] int page = 1, [FromQuery] int pageSize = 10)
     {
         var catResult = await _catService.GetCatsAsync(page, pageSize);
 
@@ -106,7 +107,7 @@ public class CatController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult<IEnumerable<CatEntity>>> GetCatsByTag([FromQuery] string tag, [FromQuery] int page = 1, [FromQuery] int pageSize = 10)
+    public async Task<ActionResult<IEnumerable<CatDto>>> GetCatsByTag([FromQuery] string tag, [FromQuery] int page = 1, [FromQuery] int pageSize = 10)
     {
         var catResult = await _catService.GetCatsByTagAsync(tag, page, pageSize);
 

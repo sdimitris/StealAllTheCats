@@ -21,6 +21,8 @@ public class CatRepository : ICatRepository
         try
         {
             var cats = await _context.Cats.OrderBy(x => x.Created)
+                .Include(cat => cat.CatTags) 
+                    .ThenInclude(catTag => catTag.Tag)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
@@ -37,26 +39,29 @@ public class CatRepository : ICatRepository
         try
         {
             var cats = await _context.Cats
+                .Include(cat => cat.CatTags) 
+                .ThenInclude(catTag => catTag.Tag)
                 .Where(c => c.CatTags.Any(t => t.Tag.Name == tag))
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
-            
+        
             return Result<IEnumerable<CatEntity>>.Ok(cats);
         }
-
         catch (Exception ex)
         {
             return Result<IEnumerable<CatEntity>>.Failure(Error.New("An error occurred while fetching the cats from the database", ex, KnownApplicationErrorEnum.SqlGenericError));
         }
-        
     }
 
     public async Task<Result<CatEntity?>> GetCatByCatIdAsync(string catId)
     {
         try
         {
-            var cat = await _context.Cats.FirstOrDefaultAsync(x => x.CatId == catId);
+            var cat = await _context.Cats
+                .Include(cat => cat.CatTags) 
+                .ThenInclude(catTag => catTag.Tag)
+                .FirstOrDefaultAsync(x => x.CatId == catId);
             return Result<CatEntity?>.Ok(cat);
         }
         catch (Exception e)
@@ -78,16 +83,14 @@ public class CatRepository : ICatRepository
         }
     }
     
-    public async Task<Result<bool>> UpdateCatAsync(CatEntity existingCat, CatEntity catEntity)
+    public async Task<Result<bool>> UpdateCatΙmageDataAsync(CatEntity existingCat, CatEntity catEntity)
     {
         try
         {
-            existingCat.ImageData = catEntity.ImageData;
-            existingCat.CatTags = catEntity.CatTags;
+            _context.Attach(existingCat);
 
-            existingCat.Width = catEntity.Width;
-            existingCat.Height = catEntity.Height;
-            
+            existingCat.ImageData = catEntity.ImageData;
+        
             await _context.SaveChangesAsync();
             return Result<bool>.Ok(true);
         }

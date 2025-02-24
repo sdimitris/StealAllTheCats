@@ -45,7 +45,7 @@ public class CatManager : ICatManager
 
             if (catFromDb.Value is not null)
             {
-                _logger.LogInformation("Skipping cat: {CatId} because already exists", cat.Id);
+                _logger.LogWarning("Skipping cat: {CatId} because already exists", cat.Id);
                 continue;
             }
 

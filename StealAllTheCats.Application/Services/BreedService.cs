@@ -42,7 +42,7 @@ public class BreedService : IBreedService
                 }
                 else
                 {
-                    _logger.LogInformation("Tag: {TagName} already exists", breedString);
+                    _logger.LogWarning("Tag: {TagName} already exists", breedString);
                     catTags.Add(new CatTag { Tag = tagResult.Value });
                 }
             }
