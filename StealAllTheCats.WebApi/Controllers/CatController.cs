@@ -69,7 +69,7 @@ public class CatController : ControllerBase
     }
 
     /// <summary>
-    /// 
+    /// Fetch all the cats from the database using pagination
     /// </summary>
     /// <param name="page"> Used for pagination </param>
     /// <param name="pageSize">Page size used for pagination </param>
