@@ -1,4 +1,4 @@
-# Steal All The Cats Interview Project
+# Steal All The Cats Project
 
 ##  Prerequisites
 Microsoft SQL Server need to be installed on your machine.
